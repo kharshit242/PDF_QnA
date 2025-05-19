@@ -7,9 +7,9 @@ from src.qa_chain    import get_qa_chain
 
 # ----------------- Setup -----------------
 load_dotenv()
-API_KEY = os.getenv("GOOGLE_API_KEY")
+# API_KEY = os.getenv("NVIDIA_API_KEY") # No longer needed here, will be picked up by LangChain
 
-st.set_page_config(page_title="PDF Q&A (Gemini)", page_icon="📄")
+st.set_page_config(page_title="PDF Q&A (Nvidia)", page_icon="📄")
 st.title("📄 Ask questions about your PDF")
 
 # ----------------- Upload -----------------
@@ -23,8 +23,8 @@ if uploaded:
     if "qa" not in st.session_state:
         with st.spinner("Indexing…"):
             docs   = load_and_split(pdf_path)
-            faiss  = build_faiss(docs, API_KEY)
-            st.session_state.qa = get_qa_chain(faiss, API_KEY)
+            faiss  = build_faiss(docs) # Removed API_KEY argument
+            st.session_state.qa = get_qa_chain(faiss) # Removed API_KEY argument
 
     # ----------------- Q&A -----------------
     question = st.text_input("Ask a question:")

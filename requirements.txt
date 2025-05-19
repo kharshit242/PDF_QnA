@@ -1,7 +1,7 @@
 langchain==0.3.25
 langchain_community==0.3.24
-langchain_google_genai==2.1.4
 python-dotenv==1.1.0
 streamlit==1.45.1
 pymupdf
 faiss-cpu
+langchain-nvidia-ai-endpoints
